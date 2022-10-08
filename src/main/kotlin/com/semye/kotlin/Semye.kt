@@ -4,8 +4,8 @@ import com.semye.kotlin.delegate.Player
 import com.semye.kotlin.delegate.PlayerDelegate
 
 //声明变量
-var v1 = 1
-val v2 = 2
+var v1 = 1 //可变类型
+val v2 = 2 //不可变类型
 
 class abc {
     val a: String by lazy {
@@ -19,7 +19,7 @@ class abc {
  * Kotlin标准库包含几个函数，它们的唯一目的是在对象的上下文中执行代码块。
  * 当您在提供了lambda表达式的对象上调用这样的函数时，它会形成一个临时作用域。
  * 在此范围内，您可以访问不带名称的对象。这样的函数称为作用域函数。
- * 有五个:let、run、with、apply和also。
+ * let、run、with、apply also tokeIf takeUnless
  */
 
 //region 作用域函数
@@ -33,15 +33,17 @@ fun test1() {
 
 
 /**
+ * 而且
  * also 函数
  */
 fun testAlso() {
+    val list = mutableListOf<String>()
     val result = "testAlso".also {
-        val list = mutableListOf<String>()
-        list.add(it)
-        println("====>$list")
+        print(it.hashCode())
+        it.substring(0,3)
     }
-    println("===>>$result")
+    println("===>>${result.hashCode()}")
+    println("===>>$list")
 }
 
 /**
@@ -82,10 +84,12 @@ fun testWith() {
     println("====>" + a)
 }
 
+
+
 /**
  * takeif 使用方法
  */
-fun testTakeif() {
+fun testTakeIf() {
     mutableListOf("1", "2", "3")
         .takeIf {
             it.size == 3
@@ -94,8 +98,10 @@ fun testTakeif() {
         }
 }
 
-
 //endregion
+
+
+
 
 fun numbers() {
     listOf<String>()
@@ -110,16 +116,13 @@ fun numbers() {
 
 val map = mapOf("a" to 1, "b" to 2, "c" to 3)
 
-fun main() {
-    testTakeif()
-    testLet()
-    testWith()
-    testApply()
+fun main3() {
+
     val data = User("semye", 28)
-    val data2 = data.copy(name = "cai")
+    val data2 = data.copy(name = "ye")
     println(data.toString())
     println(data2.toString())
-    let()
+//    let()
 //    val tag1 = Tag(true)
 //    val tag2 = Tag(false)
 //    val tag3 = Tag(true)
@@ -131,38 +134,38 @@ fun main() {
 //    print(newList)
 
 
-    var result = with(null) {
-        this + "abc"
-        "fuck"
-    }
-    println(result)
-
-    val person = Person("sss")
-    println(person.toString())
-    val student = Student("aaa")
-    println(student.toString())
-    val teacher = Teacher("bbb")
-    println(teacher.toString())
-
-    var a: String? = "hello world"
-    if (a.isNullOrEmpty()) {
-        println("hahah")
-    }
-    println("hello world!")
-    ok("hello world")
-    test()
-    foreach()
-
-    var mycustom = Customer("semye", "464622832@qq.com")
-
-    println(map["a"])
-
-
-    //数字
-    val one: Short = 1
-    val longs = 1000000000
-    val oneInt: Int = 1
-    val oneByte: Byte = 1
+//    var result = with(null) {
+//        this + "abc"
+//        "fuck"
+//    }
+//    println(result)
+//
+//    val person = Person("sss")
+//    println(person.toString())
+//    val student = Student("aaa")
+//    println(student.toString())
+//    val teacher = Teacher("bbb")
+//    println(teacher.toString())
+//
+//    var a: String? = "hello world"
+//    if (a.isNullOrEmpty()) {
+//        println("hahah")
+//    }
+//    println("hello world!")
+//    ok("hello world")
+//    test()
+//    foreach()
+//
+//    var mycustom = Customer("semye", "464622832@qq.com")
+//
+//    println(map["a"])
+//
+//
+//    //数字
+//    val one: Short = 1
+//    val longs = 1000000000
+//    val oneInt: Int = 1
+//    val oneByte: Byte = 1
 
 }
 
@@ -363,3 +366,13 @@ fun Car.create() {
  * 泛型约束
  *
  */
+
+
+//协程
+fun main() = runBlocking { // this: CoroutineScope
+    launch { // launch a new coroutine and continue
+        delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
+        println("World!") // print after delay
+    }
+    println("Hello") // main coroutine continues while a previous one is delayed
+}
