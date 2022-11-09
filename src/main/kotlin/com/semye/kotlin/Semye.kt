@@ -2,6 +2,9 @@ package com.semye.kotlin
 
 import com.semye.kotlin.delegate.Player
 import com.semye.kotlin.delegate.PlayerDelegate
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 //声明变量
 var v1 = 1 //可变类型
