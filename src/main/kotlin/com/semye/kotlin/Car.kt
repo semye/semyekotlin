@@ -5,7 +5,6 @@ package com.semye.kotlin
  */
 class Car {
 
-
     var name: String
 
     constructor(name: String) {
@@ -29,3 +28,5 @@ class Car {
 
 
 }
+
+

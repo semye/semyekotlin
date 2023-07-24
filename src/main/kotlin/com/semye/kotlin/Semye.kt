@@ -6,6 +6,26 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
+
+/**
+ * kotlin 程序入口
+ */
+fun main(args: Array<String>) {
+    println(args.contentToString())
+
+
+
+
+    runBlocking { // this: CoroutineScope
+        launch { // launch a new coroutine and continue
+            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
+            println("World!" + System.currentTimeMillis()) // print after delay
+        }
+        println("Hello" + System.currentTimeMillis()) // main coroutine continues while a previous one is delayed
+    }
+}
+
+
 //声明变量
 var v1 = 1 //可变类型
 val v2 = 2 //不可变类型
@@ -43,7 +63,7 @@ fun testAlso() {
     val list = mutableListOf<String>()
     val result = "testAlso".also {
         print(it.hashCode())
-        it.substring(0,3)
+        it.substring(0, 3)
     }
     println("===>>${result.hashCode()}")
     println("===>>$list")
@@ -88,7 +108,6 @@ fun testWith() {
 }
 
 
-
 /**
  * takeif 使用方法
  */
@@ -102,8 +121,6 @@ fun testTakeIf() {
 }
 
 //endregion
-
-
 
 
 fun numbers() {
@@ -197,7 +214,6 @@ fun ok(obj: Any) {
     }
 }
 
-data class Customer(var name: String, var email: String)
 
 //参数名带var 属性有get和set方法
 class Student(var name: String) : Person(name) {
@@ -346,20 +362,12 @@ fun main2() {
 
     val car = Car("car")
     car.run()
-    car.create()
     println(car)
     println("hello world!")
     val player = Player()
     PlayerDelegate(player).play()
 }
 
-
-/**
- * 扩展函数
- */
-fun Car.create() {
-    println("create")
-}
 
 /**
  * Sealed class
@@ -371,11 +379,3 @@ fun Car.create() {
  */
 
 
-//协程
-fun main() = runBlocking { // this: CoroutineScope
-    launch { // launch a new coroutine and continue
-        delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-        println("World!") // print after delay
-    }
-    println("Hello") // main coroutine continues while a previous one is delayed
-}
